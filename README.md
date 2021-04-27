@@ -12,3 +12,5 @@ then visit http://localhost:8080/
 ![image info](./screenshots/index.png)
 ![image info](./screenshots/webstorm.png)
 ![image info](./screenshots/api.png)
+
+## Handling Authentication in Express.js
