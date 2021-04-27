@@ -4,19 +4,15 @@ clone the repo
 
 npm install
 
-webpack serve
-
-run the docker compose file
 
 npm start 
 
-then visit http://localhost:8080/
+then visit http://localhost:3000/
 
 ### Screenshots
 
 
-![image info](./screenshots/index.png)
-![image info](./screenshots/webstorm.png)
-![image info](./screenshots/api.png)
+![image info](./screenshots/auth1.png)
+
 
 ## Handling Authentication in Express.js
