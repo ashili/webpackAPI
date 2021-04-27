@@ -1,9 +1,15 @@
 # webpackAPI
 
-clone the repo
+clone the repo 
+
 npm install
+
 webpack serve
+
 run the docker compose file
+
+npm start 
+
 then visit http://localhost:8080/
 
 ### Screenshots
