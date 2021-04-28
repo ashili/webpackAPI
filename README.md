@@ -1,22 +1,11 @@
-# webpackAPI
+# Authorization with JWTs in Express.js
 
-clone the repo 
 
-npm install
-
-webpack serve
-
-run the docker compose file
-
-npm start 
-
-then visit http://localhost:8080/
 
 ### Screenshots
 
 
-![image info](./screenshots/index.png)
-![image info](./screenshots/webstorm.png)
-![image info](./screenshots/api.png)
+![image info](./screenshots/insomnia.png)
+![image info](./screenshots/insomnia2.png)
 
-## Handling Authentication in Express.js
+
