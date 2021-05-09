@@ -3,8 +3,8 @@
 ### Screenshots
 
 
-![image info](./screenshots/app.png)
-![image info](./screenshots/auth.png)
-![image info](./screenshots/index 2.png)
+![image info](./screenshots/login.png)
+![image info](./screenshots/loggedin.png)
+![image info](./screenshots/res.png)
 
 
