@@ -1,6 +1,9 @@
+// index.js
+
 /**
  * Required External Modules
  */
+
 const express = require("express");
 const path = require("path");
 
@@ -9,19 +12,20 @@ const passport = require("passport");
 const Auth0Strategy = require("passport-auth0");
 
 require("dotenv").config();
-const authRouter = require("./auth");
 
+const authRouter = require("./auth");
 
 /**
  * App Variables
  */
-const app = express();
-const port = process.env.PORT || "8000";
 
+const app = express();
+const port = process.env.PORT || "3000";
 
 /**
- * Session Configuration
+ * Session Configuration (New!)
  */
+
 const session = {
     secret: process.env.SESSION_SECRET,
     cookie: {},
@@ -34,16 +38,8 @@ if (app.get("env") === "production") {
     session.cookie.secure = true;
 }
 
-if (app.get("env") === "production") {
-    // Serve secure cookies, requires HTTPS
-    session.cookie.secure = true;
-}
-
-
-
-
 /**
- * Passport Configuration
+ * Passport Configuration (New!)
  */
 
 const strategy = new Auth0Strategy(
@@ -53,7 +49,7 @@ const strategy = new Auth0Strategy(
         clientSecret: process.env.AUTH0_CLIENT_SECRET,
         callbackURL: process.env.AUTH0_CALLBACK_URL
     },
-    function (accessToken, refreshToken, extraParams, profile, done) {
+    function(accessToken, refreshToken, extraParams, profile, done) {
         /**
          * Access tokens are used to authorize users to an API
          * (resource server)
@@ -96,3 +92,35 @@ app.use((req, res, next) => {
 
 // Router mounting
 app.use("/", authRouter);
+
+/**
+ * Routes Definitions
+ */
+
+const secured = (req, res, next) => {
+    if (req.user) {
+        return next();
+    }
+    req.session.returnTo = req.originalUrl;
+    res.redirect("/login");
+};
+
+app.get("/", (req, res) => {
+    res.render("index", { title: "Home" });
+});
+
+app.get("/user", secured, (req, res, next) => {
+    const { _raw, _json, ...userProfile } = req.user;
+    res.render("user", {
+        title: "Profile",
+        userProfile: userProfile
+    });
+});
+
+/**
+ * Server Activation
+ */
+
+app.listen(port, () => {
+    console.log(`Listening to requests on http://localhost:${port}`);
+});

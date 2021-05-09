@@ -1,5 +1,3 @@
-// auth.js
-
 /**
  * Required External Modules
  */
@@ -14,6 +12,7 @@ require("dotenv").config();
 /**
  * Routes Definitions
  */
+
 router.get(
     "/login",
     passport.authenticate("auth0", {
@@ -23,8 +22,6 @@ router.get(
         res.redirect("/");
     }
 );
-
-
 
 router.get("/callback", (req, res, next) => {
     passport.authenticate("auth0", (err, user, info) => {
@@ -71,8 +68,8 @@ router.get("/logout", (req, res) => {
     res.redirect(logoutURL);
 });
 
-
-
 /**
  * Module Exports
  */
+
+module.exports = router;
