@@ -2,7 +2,6 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-
 const app = express();
 
 // To support URL-encoded bodies
@@ -20,7 +19,7 @@ app.engine(
 
 app.set('view engine', 'hbs');
 
-// Our requests hadlers will be implemented here...
+// Our requests handlers will be implemented here...
 
 app.listen(3000);
 
