@@ -1,5 +1,6 @@
 import getJSON from "./getJSON";
 
+
 getJSON('http://localhost:8000/api/v1/cities',
     function (err, records) {
         if (err !== null) {
@@ -25,12 +26,12 @@ function generateTableHead(table, data) {
 
 function generateTable(table, data) {
 
-    data.map(element=>{
+    let map = data.map(element=>{
         let row = table.insertRow();
         for (let key in element) {
             let cell = row.insertCell();
             let text = document.createTextNode(element[key]);
             cell.appendChild(text);
         }
-    })
+    });
 }

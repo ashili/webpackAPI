@@ -4,6 +4,12 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const app = express();
 
+
+import getJSON from "./getJSON";
+
+
+
+
 // To support URL-encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -136,6 +142,41 @@ app.use((req, res, next) => {
 app.get('/protected', (req, res) => {
     if (req.user) {
         res.render('protected');
+        getJSON('http://localhost:8000/api/v1/cities',
+            function (err, records) {
+                if (err !== null) {
+                    alert('Something went wrong: ' + err);
+                } else {
+                    let table = document.querySelector("table");
+                    let data = Object.keys((records.data[0]));
+                    let dataRecords = records.data;
+                    generateTableHead(table, data);
+                    generateTable(table, dataRecords);
+                }
+            });
+        function generateTableHead(table, data) {
+            let thead = table.createTHead();
+            let row = thead.insertRow();
+            data.map(key => {
+                let th = document.createElement("th");
+                let text = document.createTextNode(key);
+                th.appendChild(text);
+                row.appendChild(th);
+            });
+        }
+
+        function generateTable(table, data) {
+
+            let map = data.map(element=>{
+                let row = table.insertRow();
+                for (let key in element) {
+                    let cell = row.insertCell();
+                    let text = document.createTextNode(element[key]);
+                    cell.appendChild(text);
+                }
+            });
+        }
+
     } else {
         res.render('login', {
             message: 'Please login to continue',

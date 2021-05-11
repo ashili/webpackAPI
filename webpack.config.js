@@ -2,6 +2,16 @@ const CopyPlugin = require("copy-webpack-plugin");
 const path = require('path');
 
 module.exports = {
+    module:{
+    rules:[
+
+        {
+            test: /\.csss$/,
+            use: ['style-loader', 'css-loader']
+        },
+
+
+    ]},
     // Set the mode to development or production
     mode: 'development',
     watch: true,
@@ -17,19 +27,10 @@ module.exports = {
         filename: 'js/bundle.js',
         clean: true,
     },
-    module: {
-        rules: [
-            {
-                test: /\.csss$/,
-                use: ["style-loader", "css-loader"]
-            },
-        ]
-    },
     plugins: [
         new CopyPlugin({
             patterns: [
-                {
-                    from: "src",
+                { from: "src",
                     globOptions: {
                         ignore: [
                             '**/js/*',
