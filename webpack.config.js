@@ -17,10 +17,19 @@ module.exports = {
         filename: 'js/bundle.js',
         clean: true,
     },
+    module: {
+        rules: [
+            {
+                test: /\.csss$/,
+                use: ["style-loader", "css-loader"]
+            },
+        ]
+    },
     plugins: [
         new CopyPlugin({
             patterns: [
-                { from: "src",
+                {
+                    from: "src",
                     globOptions: {
                         ignore: [
                             '**/js/*',
